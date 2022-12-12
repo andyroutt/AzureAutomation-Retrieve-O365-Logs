@@ -217,6 +217,8 @@ function outputToFile($TotalContentPages, $JSONfilename, $Officetoken, $blobFold
                 $Logdata += Invoke-RestMethod -Uri $uri -Headers $Officetoken -Method Get
                 
                 # Write Log Data to Azure Storage Blob Temp (Out-File Automatically Uses $env:temp)
+                # WARNING --> There is a 1GB maximum file size of Azure Blob temporary sandbox storage
+                # https://learn.microsoft.com/en-us/azure/automation/automation-runbook-execution#temporary-storage-in-a-sandbox 
                 $Logdata | ConvertTo-Json -Depth 100 | Out-File -Encoding UTF8 -FilePath $JSONfilename
 
             } catch {
@@ -231,8 +233,6 @@ function outputToFile($TotalContentPages, $JSONfilename, $Officetoken, $blobFold
         $blobFileName = $blobFolder + "/" + $JSONfilename
 
         # Retrieve Log Data from Azure Storage Blob Temp and Write to Azure Storage Blob Container
-        # There is a 1GB maximum file size of Azure Blob temporary sandbox storage
-        # https://learn.microsoft.com/en-us/azure/automation/automation-runbook-execution#temporary-storage-in-a-sandbox 
         Write-Debug "Writing blob data to ... $blobFileName" 5>&1
         Write-Debug  "" 5>&1
         try {
