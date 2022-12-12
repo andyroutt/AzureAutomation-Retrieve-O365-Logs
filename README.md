@@ -121,45 +121,48 @@ Azure Automation script to retrieve Office 365 Audit Logs. This script was adapt
 
 	- Follow the instructions to add a managed identity to the Azure automation account.
 
+		_Account Settings &rarr; Identity &rarr; System Assigned_
+
 >		- Status: On
 >		- Permissions: Storage Blob Data Owner
 >		- Resource: [storage account name]
 
-		Account Settings &rarr; Identity &rarr; System Assigned
 
 11. Add Client Secret to Access App Registration &rarr; [Create a new credential asset](https://learn.microsoft.com/en-us/azure/automation/shared-resources/credentials?tabs=azure-powershell#create-a-new-credential-asset)
 
 	- Follow the instructions to add a client secret to the Azure automation account.
 
+		_Shared Resources &rarr; Credentials &rarr; Add a credential_
+
 >		- Name: O365AuditLogsApp-Secret
 >		- Password: [app registration client secret]
-
-		Shared Resources &rarr; Credentials &rarr; Add a credential 
 
 12. Create Runbook  &rarr; [Create PowerShell runbook](https://learn.microsoft.com/en-us/azure/automation/learn/powershell-runbook-managed-identity#create-powershell-runbook)
 
 	- Follow the instructions to add a runbook to the Azure automation account.
 
+		_Process Automation &rarr; Runbooks &rarr; Create a runbook &rarr; Edit &rarr; [Paste Script] &rarr; Save &rarr; Publish_
+
 >		- Name: Collect_O365_Logs
 >		- Type: Powershell
 >		- Version: 5.1
-
-		Process Automation &rarr; Runbooks &rarr; Create a runbook &rarr; Edit &rarr; [Paste Script] &rarr; Save &rarr; Publish
 
 13. Schedule Runbook &rarr; [Create a schedule](https://learn.microsoft.com/en-us/azure/automation/shared-resources/schedules#create-a-schedule)
 
 	- Follow the instructions to create a schedule for the runbook within the Azure automation account.
 
+		_Shared Resources &rarr; Schedules &rarr; Add a schedule_
+
 >		- Name: Collect O365 Daily
 >		- Recurrence: Every 1 Day
 
-		Shared Resources &rarr; Schedules &rarr; Add a schedule
 
 14. Link Schedule to Runbook &rarr; [Link a schedule to a runbook](https://learn.microsoft.com/en-us/azure/automation/shared-resources/schedules#link-a-schedule-to-a-runbook)
 
 	- Follow the instructions to link a schedule to a runbook within the Azure automation account.
 
-	Process Automation &rarr; Runbooks &rarr; Collect_O365_Logs &rarr; Link to schedule &rarr; Link a schedule to your runbook &rarr; Collect O365 Logs Daily
+		_Process Automation &rarr; Runbooks &rarr; Collect_O365_Logs
+		Link to schedule &rarr; Link a schedule to your runbook &rarr; Collect O365 Logs Daily_
 
 ### Disclaimer
 
