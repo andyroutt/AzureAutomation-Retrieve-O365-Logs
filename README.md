@@ -28,7 +28,7 @@ Azure Automation script to retrieve Office 365 Audit Logs. This script was adapt
 
 4. Grant Admin Consent for Office Management API Permissions &rarr; [Get Office 365 tenant admin consent](https://learn.microsoft.com/en-us/office/office-365-management-api/get-started-with-office-365-management-apis#get-office-365-tenant-admin-consent)
 
-	- Follow the instructions to grant Office Management API permissions.
+	- Follow the instructions to approve Office Management API permissions for the App Registration.
 	<br>
 
 5. Generate an Access Token &rarr; [Request an access token by using client credentials](https://learn.microsoft.com/en-us/office/office-365-management-api/get-started-with-office-365-management-apis#request-an-access-token-by-using-client-credentials)
