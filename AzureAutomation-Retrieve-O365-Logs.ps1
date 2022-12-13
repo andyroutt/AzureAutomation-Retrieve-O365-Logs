@@ -157,7 +157,9 @@ Write-Debug "" 5>&1
 # Function -- Retrieve and Format Content URIs for Subscription
 function buildLog($BaseURI, $Subscription, $tenantGUID, $OfficeToken){
 
-    # Retrieve Content Page Containing URIs
+    # Retrieve Content Pages Containing URIs
+    # NOTE --> No date range specified (defaults to last 24-hours)
+    # https://learn.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-reference#list-available-content
     try {
         $Log = Invoke-WebRequest -Method GET -Headers $OfficeToken -Uri "$BaseURI/content?contentType=$Subscription&PublisherIdentifier=$TenantGUID" -UseBasicParsing -ErrorAction Stop
     } catch {
