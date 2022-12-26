@@ -63,8 +63,8 @@ Azure Automation script to retrieve Office 365 Audit Logs. This script was adapt
 
 6. Start the Office Management API Subscriptions &rarr; [Start a subscription](https://learn.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-reference?source=recommendations#start-a-subscription)
 
-	- Follow the instructions to start a subscription for each content type. 
-
+	- Follow the instructions to start a subscription for each content type.
+	<br>
 
 	|        Content Type        |                  Description                  |
 	|----------------------------|-----------------------------------------------|
