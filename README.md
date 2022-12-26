@@ -9,7 +9,7 @@ Azure Automation script to retrieve Office 365 Audit Logs. This script was adapt
 - Azure Automation Account
 - Azure Storage Account
 
-### Setup
+### Azure App Registration (Office Management API)
 
 1. Create an Azure AD App Registration &rarr; [Register your application in Azure AD](https://learn.microsoft.com/en-us/office/office-365-management-api/get-started-with-office-365-management-apis#register-your-application-in-azure-ad)
 
@@ -104,20 +104,24 @@ Azure Automation script to retrieve Office 365 Audit Logs. This script was adapt
 	PS> Invoke-WebRequest -Method POST -Headers $headerParams -Uri "https://manage.office.com/api/v1.0/$tenant/activity/feed/subscriptions/start?contentType=DLP.All&PublisherIdentifier=$tenantid"
 	```
 
-7. Create an Azure Storage Account &rarr; [Create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal#create-a-storage-account-1) 
+### Azure Blob Setup
+
+1. Create an Azure Storage Account &rarr; [Create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal#create-a-storage-account-1) 
 	- Follow the instructions to create a new storage account.
 	<br>
 
-8. Create a Blob Container &rarr; [Create a container](https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal#create-a-container)
+2. Create a Blob Container &rarr; [Create a container](https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal#create-a-container)
 	- Follow the instructions to create a new blob container within the storage account.
 	<br>
 
-9. Create an Azure Automation Account &rarr; [Create Automation account](https://learn.microsoft.com/en-us/azure/automation/quickstarts/create-azure-automation-account-portal#create-automation-account)
+### Azure Automation Account Setup
+
+1. Create an Azure Automation Account &rarr; [Create Automation account](https://learn.microsoft.com/en-us/azure/automation/quickstarts/create-azure-automation-account-portal#create-automation-account)
 
 	- Follow the instructions to create a new automation account.
 	<br>
 
-10. Configure Managed Identity &rarr; [Enable system-assigned managed identity](https://learn.microsoft.com/en-us/azure/automation/quickstarts/enable-managed-identity#enable-system-assigned-managed-identity)
+2. Configure Managed Identity &rarr; [Enable system-assigned managed identity](https://learn.microsoft.com/en-us/azure/automation/quickstarts/enable-managed-identity#enable-system-assigned-managed-identity)
 
 	- Follow the instructions to add a managed identity to the Azure automation account.
 
@@ -128,7 +132,7 @@ Azure Automation script to retrieve Office 365 Audit Logs. This script was adapt
 >		- Resource: [storage account name]
 
 
-11. Add Client Secret to Access App Registration &rarr; [Create a new credential asset](https://learn.microsoft.com/en-us/azure/automation/shared-resources/credentials?tabs=azure-powershell#create-a-new-credential-asset)
+3. Add Client Secret to Access App Registration &rarr; [Create a new credential asset](https://learn.microsoft.com/en-us/azure/automation/shared-resources/credentials?tabs=azure-powershell#create-a-new-credential-asset)
 
 	- Follow the instructions to add a client secret to the Azure automation account.
 
@@ -137,7 +141,7 @@ Azure Automation script to retrieve Office 365 Audit Logs. This script was adapt
 >		- Name: O365AuditLogsApp-Secret
 >		- Password: [app registration client secret]
 
-12. Create Runbook  &rarr; [Create PowerShell runbook](https://learn.microsoft.com/en-us/azure/automation/learn/powershell-runbook-managed-identity#create-powershell-runbook)
+4. Create Runbook  &rarr; [Create PowerShell runbook](https://learn.microsoft.com/en-us/azure/automation/learn/powershell-runbook-managed-identity#create-powershell-runbook)
 
 	- Follow the instructions to add a runbook to the Azure automation account.
 
@@ -147,7 +151,7 @@ Azure Automation script to retrieve Office 365 Audit Logs. This script was adapt
 >		- Type: Powershell
 >		- Version: 5.1
 
-13. Schedule Runbook &rarr; [Create a schedule](https://learn.microsoft.com/en-us/azure/automation/shared-resources/schedules#create-a-schedule)
+4. Schedule Runbook &rarr; [Create a schedule](https://learn.microsoft.com/en-us/azure/automation/shared-resources/schedules#create-a-schedule)
 
 	- Follow the instructions to create a schedule for the runbook within the Azure automation account.
 
@@ -157,7 +161,7 @@ Azure Automation script to retrieve Office 365 Audit Logs. This script was adapt
 >		- Recurrence: Every 1 Day
 
 
-14. Link Schedule to Runbook &rarr; [Link a schedule to a runbook](https://learn.microsoft.com/en-us/azure/automation/shared-resources/schedules#link-a-schedule-to-a-runbook)
+5. Link Schedule to Runbook &rarr; [Link a schedule to a runbook](https://learn.microsoft.com/en-us/azure/automation/shared-resources/schedules#link-a-schedule-to-a-runbook)
 
 	- Follow the instructions to link a schedule to a runbook within the Azure automation account.
 
